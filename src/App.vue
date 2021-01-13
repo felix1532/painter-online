@@ -1,21 +1,43 @@
 <template>
-  <router-view />
+  <body class="bg-purple">
+    <div class="stars">
+      <router-view></router-view>
+      <div class="objects">
+        <img
+          class="object_rocket"
+          src="http://salehriaz.com/404Page/img/rocket.svg"
+          width="70px"
+        />
+        <div class="earth-moon">
+          <img
+            class="object_earth"
+            src="http://salehriaz.com/404Page/img/earth.svg"
+            width="150px"
+          />
+          <img
+            class="object_moon"
+            src="http://salehriaz.com/404Page/img/moon.svg"
+            width="100px"
+          />
+        </div>
+        <div class="box_astronaut">
+          <img
+            class="object_astronaut"
+            src="http://salehriaz.com/404Page/img/astronaut.svg"
+            width="160px"
+          />
+        </div>
+      </div>
+    </div>
+  </body>
 </template>
 
-<style lang="scss">
-* {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-}
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  z-index: 1;
-  background-size: cover;
-  background-position: center;
-  background-image: url('https://photojournal.jpl.nasa.gov/jpeg/PIA23689.jpg');
-}
-</style>
+<script lang="ts">
+import { defineComponent } from 'vue';
+import store from '@/store';
+import './style';
+
+export default defineComponent({
+  store
+});
+</script>

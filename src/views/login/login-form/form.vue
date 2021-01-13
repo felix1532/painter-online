@@ -1,6 +1,10 @@
 <template>
   <div className="container-login-form">
-    <form className="input-form-login" @submit.prevent>
+    <form
+      className="input-form-login"
+      @submit.prevent
+      @keydown.enter="logInBtnHandler()"
+    >
       <input
         type="text"
         className="input-field"
@@ -30,6 +34,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { mapActions } from 'vuex';
 import './style';
 
 export default defineComponent({
@@ -40,8 +45,14 @@ export default defineComponent({
     };
   },
   methods: {
+    ...mapActions(['signIn']),
     logInBtnHandler() {
-      console.log(this.login + '\n' + this.password);
+      this.signIn({
+        login: this.login,
+        password: this.password
+      });
+      this.login = '';
+      this.password = '';
     }
   }
 });

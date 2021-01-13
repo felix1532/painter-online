@@ -1,5 +1,6 @@
 <template>
-  <div className="login-page">
+  <div v-if="isLoading"><Loader /></div>
+  <div v-else className="login-page">
     <div className="container-button">
       <div id="btn-login"></div>
       <button type="button" className="toggle-button">
@@ -22,14 +23,17 @@ import { defineComponent } from 'vue';
 import LoginForm from '@/views/login/login-form/form.vue';
 import './style';
 import router from '@/router';
+import Loader from '@/components/loader/loader.vue';
+import { mapGetters } from 'vuex';
 
 export default defineComponent({
   name: 'Home',
-  components: { LoginForm },
+  components: { LoginForm, Loader },
   methods: {
     handleClickRegister() {
       router.push('/register');
     }
-  }
+  },
+  computed: mapGetters(['isLoading'])
 });
 </script>

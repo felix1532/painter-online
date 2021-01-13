@@ -23,7 +23,7 @@ export default defineComponent({
   components: { RegisterForm },
   methods: {
     handleClickLogin() {
-      router.push('/');
+      router.push('/login');
     }
   }
 });
