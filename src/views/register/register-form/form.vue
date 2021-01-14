@@ -1,6 +1,10 @@
 <template>
   <div className="container-register-form">
-    <form className="input-form-register" @submit.prevent>
+    <form
+      className="input-form-register"
+      @submit.prevent
+      @keydown.enter="registerHandler()"
+    >
       <input
         type="text"
         className="input-field "
@@ -41,7 +45,11 @@
         v-model="repeatPassword"
         required
       />
-      <button type="submit" className="submit-button" @click="handleClickLogin">
+      <button
+        type="button"
+        className="submit-button"
+        @click="registerHandler()"
+      >
         Register
       </button>
     </form>
@@ -50,6 +58,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { mapActions } from 'vuex';
 import './style';
 
 export default defineComponent({
@@ -63,10 +72,14 @@ export default defineComponent({
     };
   },
   methods: {
-    handleClickLogin() {
-      console.log(
-        `${this.name}  ${this.surname}  ${this.email}  ${this.password}  ${this.repeatPassword}`
-      );
+    ...mapActions(['register']),
+    registerHandler() {
+      this.register({
+        name: this.name,
+        surname: this.surname,
+        email: this.email,
+        password: this.password
+      });
     }
   }
 });

@@ -1,6 +1,9 @@
 import firebase from 'firebase';
 
-export const signIn = (login: string, password: string): Promise<firebase.auth.UserCredential> => {
+export const signIn = (
+  login: string,
+  password: string
+): Promise<firebase.auth.UserCredential> => {
   return firebase.auth().signInWithEmailAndPassword(login, password);
 };
 
@@ -24,5 +27,6 @@ export const register = (
         .collection('users')
         .doc(userCredential.user?.uid)
         .set({ email, name, surname });
+      firebase.auth().signOut();
     });
 };

@@ -15,6 +15,7 @@ export enum AuthMutationsTypes {
 }
 
 export const mutations = {
+  //? SIGN IN
   [AuthMutationsTypes.SIGN_IN](state: State) {
     state.signInError = '';
     state.isLoading = true;
@@ -27,6 +28,8 @@ export const mutations = {
     state.signInError = msgError;
     state.isLoading = false;
   },
+
+  //? LOG OUT
   [AuthMutationsTypes.LOG_OUT](state: State) {
     state.isLoading = true;
   },
@@ -39,5 +42,19 @@ export const mutations = {
   [AuthMutationsTypes.ERROR_LOG_OUT](state: State, msgError: string) {
     state.signOutError = msgError;
     state.isLoading = false;
+  },
+
+  //? REGISTER
+  [AuthMutationsTypes.REGISTER](state: State) {
+    state.isLoading = true;
+    state.registerError = '';
+  },
+  [AuthMutationsTypes.SUCCESS_REGISTER](state: State) {
+    state.isLoading = false;
+    state.registerError = '';
+  },
+  [AuthMutationsTypes.ERROR_REGISTER](state: State, msgError: string) {
+    state.isLoading = false;
+    state.registerError = msgError;
   }
 };

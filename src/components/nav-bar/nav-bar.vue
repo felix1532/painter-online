@@ -6,13 +6,19 @@
     <div class="navbar-links">
       <ul>
         <li>
-          <a>Home</a>
+          <router-link to="/">
+            <a :class="{ active: activeHome }">Home</a></router-link
+          >
         </li>
         <li>
-          <a>About</a>
+          <router-link to="/editor">
+            <a :class="{ active: activeEditor }">Editor</a></router-link
+          >
         </li>
         <li>
-          <a>Logout</a>
+          <router-link to="/profile">
+            <a :class="{ active: activeProfile }">Profile</a>
+          </router-link>
         </li>
         <li>
           <a class="btn-request" @click="logOutHandler">Logout</a>
@@ -26,15 +32,50 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
+  data() {
+    return {
+      activeHome: false,
+      activeProfile: false,
+      activeEditor: false
+    };
+  },
   props: {
     logOutHandler: {
       type: Function
+    },
+    active: {
+      type: String
+    }
+  },
+  mounted() {
+    switch (this.active) {
+      case 'home': {
+        this.activeHome = true;
+        break;
+      }
+      case 'editor': {
+        this.activeEditor = true;
+        break;
+      }
+      case 'profile': {
+        this.activeProfile = true;
+        break;
+      }
+      default: {
+        this.activeHome = true;
+        break;
+      }
     }
   }
 });
 </script>
 
 <style lang="scss">
+.active {
+  text-shadow: 1px 2px 2px black, 0 0 1em white;
+  color: #5bcbf5;
+}
+
 .custom-navbar {
   padding-top: 15px;
 }

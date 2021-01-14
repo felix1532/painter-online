@@ -5,11 +5,16 @@
       src="http://salehriaz.com/404Page/img/404.svg"
       width="250px"
     />
-    <a class="btn-go-home">GO BACK HOME</a>
+    <router-link to="/">
+      <a class="btn-go-home">GO BACK HOME</a>
+    </router-link>
   </div>
 </template>
 
 <style lang="scss">
+a {
+  text-decoration: none;
+}
 .btn-go-home {
   position: relative;
   z-index: 200;

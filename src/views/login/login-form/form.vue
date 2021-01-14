@@ -1,10 +1,6 @@
 <template>
   <div className="container-login-form">
-    <form
-      className="input-form-login"
-      @submit.prevent
-      @keydown.enter="logInBtnHandler()"
-    >
+    <form className="input-form-login" @keydown.enter="logInHandler()">
       <input
         type="text"
         className="input-field"
@@ -21,11 +17,7 @@
         v-model="password"
         required
       />
-      <button
-        type="submit"
-        className="submit-button"
-        @click="logInBtnHandler()"
-      >
+      <button type="button" className="submit-button" @click="logInHandler()">
         Log In
       </button>
     </form>
@@ -46,7 +38,7 @@ export default defineComponent({
   },
   methods: {
     ...mapActions(['signIn']),
-    logInBtnHandler() {
+    logInHandler() {
       this.signIn({
         login: this.login,
         password: this.password

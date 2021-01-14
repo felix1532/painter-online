@@ -46,6 +46,34 @@ const routes: Array<RouteRecordRaw> = [
     }
   },
   {
+    path: '/editor',
+    name: 'Editor',
+    component: () => import('@/views/editor/editor.vue'),
+    beforeEnter(to, from, next) {
+      Firebase.auth().onAuthStateChanged(userCredential => {
+        if (userCredential) {
+          next();
+        } else {
+          next({ path: '/login' });
+        }
+      });
+    }
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: () => import('@/views/profile/profile.vue'),
+    beforeEnter(to, from, next) {
+      Firebase.auth().onAuthStateChanged(userCredential => {
+        if (userCredential) {
+          next();
+        } else {
+          next({ path: '/login' });
+        }
+      });
+    }
+  },
+  {
     path: '/:catchAll(.*)',
     name: 'NotFound',
     component: () => import('@/views/not-found/not-found.vue')
